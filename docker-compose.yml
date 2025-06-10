@@ -1,0 +1,59 @@
+# 定義自訂網路
+networks:
+  ci-net:
+    driver: bridge
+
+services:
+  server:
+    image: gitea/gitea:latest
+    container_name: gitea
+    restart: always
+    environment:
+      - USER_UID=${USER_UID:-1000}
+      - USER_GID=${USER_GID:-1000}
+    volumes:
+      - ./gitea:/data
+      - ./custom/templates:/data/gitea/templates
+      - ./custom/public:/data/gitea/public
+    ports:
+      - "3000:3000"   # Web UI
+      - "2222:22"     # SSH (避免佔用本機的 22 port)
+    networks:
+      - ci-net
+
+  drone-server:
+    image: drone/drone:2
+    container_name: drone-server
+    ports:
+      - 8080:80  # 將 Drone 的 UI 對外開在 8080 port
+    volumes:
+      - ./drone-data:/data
+    restart: always
+    environment:
+      - DRONE_GITEA_SERVER=${DRONE_GITEA_SERVER:-http://10.1.230.110:3000}
+      - DRONE_GITEA_CLIENT_ID=${DRONE_GITEA_CLIENT_ID}
+      - DRONE_GITEA_CLIENT_SECRET=${DRONE_GITEA_CLIENT_SECRET}
+      - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
+      - DRONE_SERVER_HOST=${DRONE_SERVER_HOST:-10.1.230.110:8080}
+      - DRONE_SERVER_PROTO=${DRONE_SERVER_PROTO:-http}
+      - DRONE_USER_CREATE=${DRONE_USER_CREATE:-username:admin,admin:true}
+      - DRONE_LOGS_DEBUG=${DRONE_LOGS_DEBUG:-false}
+    networks:
+      - ci-net
+    depends_on:
+      - server
+
+  drone-runner:
+    image: drone/drone-runner-docker:1
+    container_name: drone-runner
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_RPC_PROTO=${DRONE_SERVER_PROTO:-http}
+      - DRONE_RPC_HOST=drone-server
+      - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
+    networks:
+      - ci-net
+    depends_on:
+      - drone-server

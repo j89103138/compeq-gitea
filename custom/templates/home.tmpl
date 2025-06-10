@@ -1,0 +1,169 @@
+{{template "base/head" .}}
+<div role="main" aria-label="{{.Title}}" class="page-content home">
+	<!-- 主要內容區域 -->
+	<div class="homepage-container">
+		
+		<!-- 頂部 HERO 區域 -->
+		<section class="hero-section">
+			<div class="ui container">
+				<div class="hero-content">
+					<!-- 公司 LOGO -->
+					<div class="logo-container">
+						<img src="{{AppSubUrl}}/assets/img/company-logo.png" alt="COMPEQ LOGO" class="company-logo" onerror="this.style.display='none'">
+					</div>
+					
+					<!-- 主標題 -->
+					<h1 class="hero-title">
+						{{if .IsSigned}}
+							歡迎回來，{{.SignedUser.Name}}！
+						{{else}}
+							Compeq Git Server
+						{{end}}
+					</h1>
+					
+					<!-- 副標題和描述 -->
+					<div class="hero-description">
+						<p class="subtitle">華通電腦Z部門 Git 程式碼倉庫管理系統</p>
+						<p class="tagline">安全、高效、協作 </p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 功能特色區域 -->
+		<section class="features-section">
+			<div class="ui container">
+				<div class="ui three column stackable grid feature-grid">
+					<div class="column">
+						<div class="ui card feature-card">
+							<div class="content">
+								<div class="feature-icon">
+									<i class="large blue code icon"></i>
+								</div>
+								<div class="feature-header">代碼管理</div>
+								<div class="feature-description">
+									Git 託管，分支管理，版本控制
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="ui card feature-card">
+							<div class="content">
+								<div class="feature-icon">
+									<i class="large green users icon"></i>
+								</div>
+								<div class="feature-header">團隊協作</div>
+								<div class="feature-description">
+									支援多人協作開發，PR代碼審查
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="ui card feature-card">
+							<div class="content">
+								<div class="feature-icon">
+									<i class="large orange shield icon"></i>
+								</div>
+								<div class="feature-header">安全</div>
+								<div class="feature-description">
+									私有部署，安全可控
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 間距區域 -->
+		<div style="height: 3rem; background: #f8f9fa;"></div>
+
+		<!-- 行動呼籲區域 -->
+		{{if not .IsSigned}}
+		<section class="cta-section">
+			<div class="ui container">
+				<div class="cta-content">
+					<h2 class="cta-title">開始使用</h2>
+					<p class="cta-description"></p>
+					<div class="cta-buttons">
+						<a class="ui large primary button cta-button" href="{{AppSubUrl}}/user/login">
+							<i class="sign in icon"></i>
+							登入系統
+						</a>
+						{{if .ShowRegistrationButton}}
+						<a class="ui large secondary button cta-button" href="{{AppSubUrl}}/user/sign_up">
+							<i class="user plus icon"></i>
+							註冊帳號
+						</a>
+						{{end}}
+					</div>
+				</div>
+			</div>
+		</section>
+		{{end}}
+
+		<!-- 快速導航區域（已登入用戶） -->
+		{{if .IsSigned}}
+		<section class="quick-nav-section">
+			<div class="ui container">
+				<h2 class="section-title">快速導航</h2>
+				<div class="ui four column stackable grid">
+					<div class="column">
+						<a class="ui fluid large button quick-nav-button" href="{{AppSubUrl}}/{{.SignedUser.Name}}">
+							<i class="user icon"></i>
+							我的倉庫
+						</a>
+					</div>
+					<div class="column">
+						<a class="ui fluid large button quick-nav-button" href="{{AppSubUrl}}/repo/create">
+							<i class="plus icon"></i>
+							建立倉庫
+						</a>
+					</div>
+					<div class="column">
+						<a class="ui fluid large button quick-nav-button" href="{{AppSubUrl}}/explore/repos">
+							<i class="search icon"></i>
+							探索專案
+						</a>
+					</div>
+					<div class="column">
+						<a class="ui fluid large button quick-nav-button" href="{{AppSubUrl}}/org/create">
+							<i class="users icon"></i>
+							建立組織
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		{{end}}
+
+		<!-- 技術支援區域 -->
+		<section class="support-section">
+			<div class="ui container">
+				<div class="support-card">
+					<div class="support-header">
+						<i class="large blue question circle icon"></i>
+						<h3>需要幫助？</h3>
+					</div>
+					<div class="support-content">
+						<p class="support-text">在使用過程中遇到任何問題，請聯絡我們 :</p>
+						<div class="support-contacts">
+							<div class="contact-item">
+								<i class="mail icon"></i>
+								<a href="mailto:shawnliu@compeq.com.tw">shawnliu@compeq.com.tw</a>
+							</div>
+							<div class="contact-item">
+								<i class="phone icon"></i>
+								<span></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+</div>
+{{template "base/footer" .}} 
