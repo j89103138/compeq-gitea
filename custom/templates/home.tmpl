@@ -24,140 +24,190 @@
 					<!-- 副標題和描述 -->
 					<div class="hero-description">
 						<p class="subtitle">華通電腦Z部門 Git 程式碼倉庫管理系統</p>
-						<p class="tagline">安全、高效、協作 </p>
+						<p class="tagline">安全、高效、協作</p>
 					</div>
-				</div>
-			</div>
-		</section>
 
-		<!-- 功能特色區域 -->
-		<section class="features-section">
-			<div class="ui container">
-				<div class="ui three column stackable grid feature-grid">
-					<div class="column">
-						<div class="ui card feature-card">
-							<div class="content">
-								<div class="feature-icon">
-									<i class="large blue code icon"></i>
-								</div>
-								<div class="feature-header">代碼管理</div>
-								<div class="feature-description">
-									Git 託管，分支管理，版本控制
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column">
-						<div class="ui card feature-card">
-							<div class="content">
-								<div class="feature-icon">
-									<i class="large green users icon"></i>
-								</div>
-								<div class="feature-header">團隊協作</div>
-								<div class="feature-description">
-									支援多人協作開發，PR代碼審查
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column">
-						<div class="ui card feature-card">
-							<div class="content">
-								<div class="feature-icon">
-									<i class="large orange shield icon"></i>
-								</div>
-								<div class="feature-header">安全</div>
-								<div class="feature-description">
-									私有部署，安全可控
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- 間距區域 -->
-		<div style="height: 3rem; background: #f8f9fa;"></div>
-
-		<!-- 行動呼籲區域 -->
-		{{if not .IsSigned}}
-		<section class="cta-section">
-			<div class="ui container">
-				<div class="cta-content">
-					<h2 class="cta-title">開始使用</h2>
-					<p class="cta-description"></p>
-					<div class="cta-buttons">
-						<a class="ui large primary button cta-button" href="{{AppSubUrl}}/user/login">
-							<i class="sign in icon"></i>
-							登入系統
-						</a>
-						{{if .ShowRegistrationButton}}
-						<a class="ui large secondary button cta-button" href="{{AppSubUrl}}/user/sign_up">
-							<i class="user plus icon"></i>
-							註冊帳號
-						</a>
+					<!-- 快速行動按鈕 -->
+					<div class="hero-actions">
+						{{if not .IsSigned}}
+							<a class="ui large primary button hero-button" href="{{AppSubUrl}}/user/login">
+								<i class="sign in icon"></i>
+								登入系統
+							</a>
+							{{if .ShowRegistrationButton}}
+							<a class="ui large secondary button hero-button" href="{{AppSubUrl}}/user/sign_up">
+								<i class="user plus icon"></i>
+								註冊帳號
+							</a>
+							{{end}}
+							<a class="ui large button hero-help-button" href="{{AppSubUrl}}/assets/user-guide.html" target="_blank">
+								<i class="book icon"></i>
+								使用說明
+							</a>
+						{{else}}
+							<a class="ui large primary button hero-button" href="{{AppSubUrl}}/repo/create">
+								<i class="plus icon"></i>
+								建立倉庫
+							</a>
+							<a class="ui large button hero-button" href="{{AppSubUrl}}/{{.SignedUser.Name}}">
+								<i class="user icon"></i>
+								我的倉庫
+							</a>
+							<a class="ui large button hero-help-button" href="{{AppSubUrl}}/assets/user-guide.html" target="_blank">
+								<i class="book icon"></i>
+								使用說明
+							</a>
 						{{end}}
 					</div>
 				</div>
 			</div>
 		</section>
-		{{end}}
 
-		<!-- 快速導航區域（已登入用戶） -->
-		{{if .IsSigned}}
-		<section class="quick-nav-section">
+		<!-- 主要內容區域 -->
+		<section class="main-content-section">
 			<div class="ui container">
-				<h2 class="section-title">快速導航</h2>
-				<div class="ui four column stackable grid">
-					<div class="column">
-						<a class="ui fluid large button quick-nav-button" href="{{AppSubUrl}}/{{.SignedUser.Name}}">
-							<i class="user icon"></i>
-							我的倉庫
-						</a>
-					</div>
-					<div class="column">
-						<a class="ui fluid large button quick-nav-button" href="{{AppSubUrl}}/repo/create">
-							<i class="plus icon"></i>
-							建立倉庫
-						</a>
-					</div>
-					<div class="column">
-						<a class="ui fluid large button quick-nav-button" href="{{AppSubUrl}}/explore/repos">
-							<i class="search icon"></i>
-							探索專案
-						</a>
-					</div>
-					<div class="column">
-						<a class="ui fluid large button quick-nav-button" href="{{AppSubUrl}}/org/create">
-							<i class="users icon"></i>
-							建立組織
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		{{end}}
+				<div class="ui stackable grid">
+					
+					<!-- 左側：功能特色 -->
+					<div class="ten wide column">
+						<h2 class="section-header">
+							<i class="star icon"></i>
+							功能特色
+						</h2>
+						<div class="ui two column stackable grid feature-compact-grid">
+							<div class="column">
+								<div class="feature-compact-card">
+									<div class="feature-compact-icon">
+										<i class="large blue code icon"></i>
+									</div>
+									<div class="feature-compact-content">
+										<h4>代碼管理</h4>
+										<p>Git 託管，分支管理，版本控制</p>
+									</div>
+								</div>
+							</div>
+							<div class="column">
+								<div class="feature-compact-card">
+									<div class="feature-compact-icon">
+										<i class="large green users icon"></i>
+									</div>
+									<div class="feature-compact-content">
+										<h4>團隊協作</h4>
+										<p>支援多人協作開發，PR代碼審查</p>
+									</div>
+								</div>
+							</div>
+							<div class="column">
+								<div class="feature-compact-card">
+									<div class="feature-compact-icon">
+										<i class="large orange shield icon"></i>
+									</div>
+									<div class="feature-compact-content">
+										<h4>安全可控</h4>
+										<p>私有部署，企業級安全保障</p>
+									</div>
+								</div>
+							</div>
+							<div class="column">
+								<div class="feature-compact-card">
+									<div class="feature-compact-icon">
+										<i class="large purple rocket icon"></i>
+									</div>
+									<div class="feature-compact-content">
+										<h4>CI/CD 整合</h4>
+										<p>Git Actions 自動化構建部署</p>
+									</div>
+								</div>
+							</div>
+						</div>
 
-		<!-- 技術支援區域 -->
-		<section class="support-section">
-			<div class="ui container">
-				<div class="support-card">
-					<div class="support-header">
-						<i class="large blue question circle icon"></i>
-						<h3>需要幫助？</h3>
+						{{if .IsSigned}}
+						<!-- 快速導航（已登入用戶） -->
+						<h2 class="section-header">
+							<i class="compass icon"></i>
+							快速導航
+						</h2>
+						<div class="ui four column stackable grid quick-nav-compact">
+							<div class="column">
+								<a class="quick-nav-compact-button" href="{{AppSubUrl}}/{{.SignedUser.Name}}">
+									<i class="user icon"></i>
+									<span>我的倉庫</span>
+								</a>
+							</div>
+							<div class="column">
+								<a class="quick-nav-compact-button" href="{{AppSubUrl}}/repo/create">
+									<i class="plus icon"></i>
+									<span>建立倉庫</span>
+								</a>
+							</div>
+							<div class="column">
+								<a class="quick-nav-compact-button" href="{{AppSubUrl}}/explore/repos">
+									<i class="search icon"></i>
+									<span>探索專案</span>
+								</a>
+							</div>
+							<div class="column">
+								<a class="quick-nav-compact-button" href="{{AppSubUrl}}/org/create">
+									<i class="users icon"></i>
+									<span>建立組織</span>
+								</a>
+							</div>
+						</div>
+						{{end}}
 					</div>
-					<div class="support-content">
-						<p class="support-text">在使用過程中遇到任何問題，請聯絡我們 :</p>
-						<div class="support-contacts">
-							<div class="contact-item">
-								<i class="mail icon"></i>
-								<a href="mailto:shawnliu@compeq.com.tw">shawnliu@compeq.com.tw</a>
+
+					<!-- 右側：說明和支援 -->
+					<div class="six wide column">
+						<div class="sidebar-content">
+							
+							<!-- 使用說明卡片 -->
+							<div class="info-card">
+								<div class="info-card-header">
+									<i class="book icon"></i>
+									<h3>使用說明</h3>
+								</div>
+								<div class="info-card-content">
+									<p>完整的使用指南，幫助您快速上手</p>
+									<div class="info-card-buttons">
+										<a class="ui blue button" href="{{AppSubUrl}}/assets/user-guide.html" target="_blank">
+											<i class="book icon"></i>
+											完整指南
+										</a>
+										<a class="ui teal button" href="{{AppSubUrl}}/assets/user-guide.html#faq" target="_blank">
+											<i class="help circle icon"></i>
+											常見問題
+										</a>
+									</div>
+								</div>
 							</div>
-							<div class="contact-item">
-								<i class="phone icon"></i>
-								<span></span>
+
+
+							<!-- 系統資訊卡片 -->
+							<div class="info-card">
+								<div class="info-card-header">
+									<i class="server icon"></i>
+									<h3>系統資訊</h3>
+								</div>
+								<div class="info-card-content">
+									<div class="system-info">
+										<div class="system-item">
+											<i class="globe icon"></i>
+											<span>Gitea 服務</span>
+											<a href="http://10.1.230.110:3000" target="_blank">:3000</a>
+										</div>
+										<div class="system-item">
+											<i class="rocket icon"></i>
+		
+										</div>
+										<div class="system-item">
+											<i class="terminal icon"></i>
+											<span>SSH 連接</span>
+											<code>:2222</code>
+										</div>
+									</div>
+								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>

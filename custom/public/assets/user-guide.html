@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compeq Git Server 使用說明</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #fff;
+        }
+        
+        h1, h2, h3 {
+            color: #1f2328;
+            border-bottom: 1px solid #d1d9e0;
+            padding-bottom: 0.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+        }
+        
+        code {
+            background: #f6f8fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 85%;
+        }
+        
+        pre {
+            background: #f6f8fa;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 0.5rem 1rem;
+            border-left: 4px solid #ffc107;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            padding: 0.5rem 1rem;
+            border-left: 4px solid #17a2b8;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .success {
+            background: #d4edda;
+            padding: 0.5rem 1rem;
+            border-left: 4px solid #28a745;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        ul, ol {
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #0366d6;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+        
+        .btn:hover {
+            background: #0256cc;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .toc {
+            background: #f6f8fa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 2rem 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>📖 Compeq Git Server 使用說明</h1>
+    
+    <div class="contact-info">
+        <strong>🏢 華通電腦 Z部門 Git 程式碼倉庫管理系統</strong><br>
+        📧 支援：<a href="mailto:shawnliu@compeq.com.tw">shawnliu@compeq.com.tw</a><br>
+        🌐 系統地址：<a href="http://10.1.230.110:3000">http://10.1.230.110:3000</a>
+    </div>
+    
+    <div class="toc">
+        <h3>📋 目錄</h3>
+        <ul>
+            <li><a href="#login">🔐 登入系統</a></li>
+            <li><a href="#repository">📁 建立倉庫</a></li>
+            <li><a href="#git-operations">🌿 Git 基本操作</a></li>
+            <li><a href="#ssh-setup">🔑 SSH 金鑰配置</a></li>
+            <li><a href="#collaboration">👥 團隊協作</a></li>
+            <li><a href="#cicd">📊 CI/CD 整合</a></li>
+            <li><a href="#faq">❓ 常見問題</a></li>
+            <li> 🔄 此教學文檔會持續更新，有相關問題歡迎指教。</a></li>
+        </ul>
+    </div>
+
+    <h2 id="login">🔐 登入系統</h2>
+    
+    <h3>首次登入</h3>
+    <ol>
+        <li>訪問 <a href="http://10.1.230.110:3000">http://10.1.230.110:3000</a></li>
+        <li>點擊右上角 <strong>「登入」</strong> 按鈕</li>
+        <li>使用您的帳號(不是email) & 密碼登入</li>
+        <li>尚未註冊帳號的請直接登入AD帳號</li>
+    </ol>
+    
+
+    <h2 id="repository">📁 建立倉庫</h2>
+    
+    <h3>建立新倉庫</h3>
+    <ol>
+        <li>登入後點擊右上角 <strong>「+」</strong> 按鈕</li>
+        <li>選擇 <strong>「新建倉庫」</strong></li>
+        <li>填寫倉庫資訊：
+            <ul>
+                <li><strong>倉庫名稱</strong>：使用小寫英文和連字符</li>
+                <li><strong>描述</strong>：簡短描述專案用途</li>
+                <li><strong>可見性</strong>：選擇公開或私有</li>
+            </ul>
+        </li>
+        <li>點擊 <strong>「建立倉庫」</strong></li>
+    </ol>
+    
+    <h3>倉庫命名規範</h3>
+    <div class="success">
+        <ul>
+            <li>✅ 使用小寫英文字母</li>
+            <li>✅ 使用連字符 <code>-</code> 分隔單詞</li>
+            <li>✅ 避免使用特殊字符</li>
+            <li>📝 範例：<code>project-name</code>、<code>web-frontend</code>、<code>api-server</code></li>
+        </ul>
+    </div>
+
+    <h2 id="git-operations">🌿 Git 基本操作</h2>
+    
+    <h3>克隆倉庫</h3>
+    <pre><code># HTTPS 方式 (推薦)
+git clone http://10.1.230.110:3000/username/repo-name.git
+
+# SSH 方式
+git clone git@10.1.230.110:2222:username/repo-name.git</code></pre>
+    
+    <h3>基本工作流程</h3>
+    <pre><code># 1. 克隆倉庫
+git clone &lt;倉庫地址&gt;
+cd &lt;倉庫名稱&gt;
+
+# 2. 建立分支
+git checkout -b feature/new-feature
+
+# 3. 修改代碼後提交
+git add .
+git commit -m "feat: 添加新功能"
+
+# 4. 推送到遠端
+git push origin feature/new-feature
+
+# 5. 在網頁上建立 Pull Request (合併請求) </code></pre>
+
+    <h2 id="ssh-setup">🔑 SSH 金鑰配置</h2>
+    
+    <h3>生成 SSH 金鑰</h3>
+    <pre><code># 生成新的 SSH 金鑰
+ssh-keygen -t ed25519 -C "your.email@compeq.com.tw"
+
+# 查看公鑰內容
+cat ~/.ssh/id_ed25519.pub</code></pre>
+    
+    <h3>添加 SSH 金鑰到 Gitea</h3>
+    <ol>
+        <li>登入 Gitea 後點擊右上角頭像</li>
+        <li>選擇 <strong>「設定」</strong></li>
+        <li>左側選單選擇 <strong>「SSH / GPG 金鑰」</strong></li>
+        <li>點擊 <strong>「增加金鑰」</strong></li>
+        <li>貼上公鑰內容並設定名稱</li>
+        <li>點擊 <strong>「增加金鑰」</strong></li>
+    </ol>
+    
+    <h3>測試 SSH 連線</h3>
+    <pre><code># 測試 SSH 連線（注意是 2222 埠）
+ssh -T git@10.1.230.110 -p 2222</code></pre>
+
+    <h2 id="collaboration">👥 團隊協作</h2>
+    
+    <h3>Pull Request 流程</h3>
+    <ol>
+        <li><strong>建立分支</strong>
+            <pre><code>git checkout -b feature/your-feature</code></pre>
+        </li>
+        <li><strong>開發並提交 (不建議 push 到 main 分支)</strong>
+            <pre><code>git add .
+git commit -m "描述你的修改"
+git push origin feature/your-feature</code></pre>
+        </li>
+        <li><strong>建立 Pull Request (合併請求, 建議使用這個來推上main分支)</strong>
+            <ul>
+                <li>在 Gitea 網頁上點擊 <strong>「New Pull Request」</strong></li>
+                <li>填寫 PR 標題和描述</li>
+                <li>指定審查者</li>
+                <li>提交 PR</li>
+                <li>*請注意 請先設置倉庫PR的規則rules，例如誰可以核可? 需要幾位人員核可? </li>
+            </ul>
+        </li>
+    </ol>
+    
+    <h3>提交訊息規範 (僅供參考~)</h3>
+    <pre><code># 格式：&lt;類型&gt;: &lt;描述&gt;
+feat: 添加用戶登入功能
+fix: 修復登出時的記憶體洩露
+docs: 更新 API 文檔
+style: 修正代碼格式
+refactor: 重構用戶服務模組
+test: 添加單元測試
+chore: 更新依賴套件</code></pre>
+
+    <h2 id="cicd">📊 CI/CD 整合</h2>
+    
+    <p>本系統CICD流程使用流行的Github Actions 的本地版本，支援自動化 Build 和部署。</p>
+    
+    <h3>配置 CI/CD</h3>
+    <ol>
+        <li>在倉庫根目錄建立 <code>.drone.yml</code> 文件</li>
+        <li>配置構建步驟：
+            <pre><code>kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: test
+  image: node:16
+  commands:
+  - npm install
+  - npm test
+
+- name: build
+  image: node:16
+  commands:
+  - npm run build</code></pre>
+        </li>
+        <li>推送代碼後自動觸發 CI/CD</li>
+    </ol>
+    
+    <h3>查看構建狀態</h3>
+    <ul>
+        <li>在倉庫頁面點擊上方 Actions 分頁</li>
+        <li>查看詳細 CICD 日誌</li>
+    </ul>
+
+    <h2 id="faq">❓ 常見問題</h2>
+    
+    <h3>Q: 無法推送代碼？</h3>
+    <div class="highlight">
+        <strong>A:</strong> 檢查以下項目：
+        <ul>
+            <li>確認有推送權限</li>
+            <li>檢查分支保護規則</li>
+            <li>驗證 SSH 金鑰配置</li>
+            <li>確認沒有大檔案（&gt;100MB）</li>
+        </ul>
+    </div>
+    
+    <h3>Q: 忘記密碼怎麼辦？</h3>
+    <div class="info">
+        <strong>A:</strong> 這是AD帳號與AD密碼，請聯絡公司AD密碼重設管理員
+    </div>
+    
+    <h3>Q: 如何刪除倉庫？</h3>
+    <div class="highlight">
+        <strong>A:</strong>
+        <ol>
+            <li>進入倉庫設定</li>
+            <li>滾動到最下方</li>
+            <li>點擊 <strong>「刪除此倉庫」</strong></li>
+            <li>輸入倉庫名稱確認</li>
+        </ol>
+    </div>
+    
+    <h3>Q: 大檔案如何處理？</h3>
+    <div class="info">
+        <strong>A:</strong> 使用 Git LFS：
+        <pre><code># 安裝 Git LFS
+git lfs install
+
+# 追蹤大檔案
+git lfs track "*.psd"
+git add .gitattributes</code></pre>
+    </div>
+
+    <h2>🆘 技術支援</h2>
+    
+    <div class="contact-info">
+        <h3>聯絡資訊</h3>
+        <p>📧 <strong>Email</strong>: <a href="mailto:shawnliu@compeq.com.tw">shawnliu@compeq.com.tw</a></p>
+        
+        <a href="http://10.1.230.110:3000" class="btn">🌐 返回 Git 系統</a>
+    </div>
+    
+    <hr style="margin: 3rem 0;">
+    
+    <p style="text-align: center; color: #6c757d;">
+        <strong>💡 提示：</strong>此文檔會定期更新。如有建議或問題，歡迎回饋給管理員。
+    </p>
+</body>
+</html> 
