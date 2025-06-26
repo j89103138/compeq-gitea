@@ -15,17 +15,7 @@ drone-data/
 docker-compose.override.yml
 .docker/
 
-# ==============================================
-# 環境變數和配置文件
-# ==============================================
-.env
-.env.local
-.env.production
-*.env
 
-# 個人配置文件
-app.ini
-config.ini
 
 # ==============================================
 # 日誌文件
@@ -60,61 +50,3 @@ temp/
 *.tar.gz
 *.rar
 *.7z
-
-# ==============================================
-# 作業系統相關
-# ==============================================
-# Windows
-Thumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-._*
-
-# Linux
-*~
-.Trash-*
-
-# ==============================================
-# 編輯器和 IDE
-# ==============================================
-# Visual Studio Code
-.vscode/
-*.code-workspace
-
-# JetBrains IDEs
-.idea/
-*.iml
-*.iws
-
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
-
-# Vim
-*.swp
-*.swo
-*~
-
-# Emacs
-*~
-\#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
-*.elc
-
-# ==============================================
-# 個人自訂文件
-# ==============================================
-# 個人筆記
-notes.txt
-notes.md
-TODO.txt
-
-# 測試文件
-test.*
-testing/

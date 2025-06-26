@@ -59,6 +59,18 @@
 							</a>
 						{{end}}
 					</div>
+
+					<!-- 登入提示 (只在未登入時顯示) -->
+					{{if not .IsSigned}}
+					<div class="login-tip" style="margin-top: 25px; text-align: center; padding: 0 20px;">
+						<div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 12px 20px; display: inline-block;">
+							<small style="color: rgba(255,255,255,0.9); font-size: 0.85em; line-height: 1.4;">
+								<i class="info circle icon" style="color: rgba(255,255,255,0.8);"></i>
+								初次登入請先使用「帳號」，之後就可以「帳號」與「電子郵件」任選登入
+							</small>
+						</div>
+					</div>
+					{{end}}
 				</div>
 			</div>
 		</section>
@@ -197,7 +209,8 @@
 										</div>
 										<div class="system-item">
 											<i class="rocket icon"></i>
-		
+											<span>Drone CI</span>
+											<code>已整合</code>
 										</div>
 										<div class="system-item">
 											<i class="terminal icon"></i>

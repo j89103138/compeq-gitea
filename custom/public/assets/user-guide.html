@@ -133,6 +133,22 @@
             margin: 2rem 0;
             text-align: center;
         }
+
+        .guide-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+        }
+
+        .image-caption {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
         
         @media (max-width: 768px) {
             body {
@@ -163,6 +179,7 @@
         <ul>
             <li><a href="#login">🔐 登入系統</a></li>
             <li><a href="#repository">📁 建立倉庫</a></li>
+            <li><a href="#vscode-ui">💻 VSCode UI 操作指南</a></li>
             <li><a href="#git-operations">🌿 Git 基本操作</a></li>
             <li><a href="#ssh-setup">🔑 SSH 金鑰配置</a></li>
             <li><a href="#collaboration">👥 團隊協作</a></li>
@@ -206,6 +223,70 @@
             <li>✅ 使用連字符 <code>-</code> 分隔單詞</li>
             <li>✅ 避免使用特殊字符</li>
             <li>📝 範例：<code>project-name</code>、<code>web-frontend</code>、<code>api-server</code></li>
+        </ul>
+    </div>
+
+    <h2 id="vscode-ui">💻 VSCode UI 操作指南</h2>
+
+    <p>對於不熟悉命令列操作的使用者，VSCode 提供了直觀的圖形化界面來進行 Git 操作。以下是使用 VSCode UI 進行常見 Git 操作的步驟說明。</p>
+
+    <h3>📝 提交變更 (Add & Commit)</h3>
+    <p>當您修改了檔案後，可以透過 VSCode 的 Source Control 面板輕鬆提交變更：</p>
+
+    <div class="info">
+        <strong>💡 操作步驟：</strong>
+        <ol>
+            <li>點擊左側活動列的 <strong>Source Control</strong> 圖示（或按 <code>Ctrl+Shift+G</code>）</li>
+            <li>在 <strong>Changes</strong> 區域中，您會看到所有修改過的檔案</li>
+            <li>點擊檔案旁的 <strong>「+」</strong> 按鈕將檔案加入暫存區（Stage）</li>
+            <li>或點擊 <strong>Changes</strong> 標題旁的 <strong>「+」</strong> 按鈕一次暫存所有變更</li>
+            <li>在上方的訊息框中輸入提交訊息</li>
+            <li>點擊 <strong>「✓ Commit」</strong> 按鈕完成提交</li>
+        </ol>
+    </div>
+
+    <div style="text-align: center; margin: 1.5rem 0;">
+        <img src="img/add-commit.png" alt="VSCode Add & Commit 操作示意圖" class="guide-image">
+        <p class="image-caption">▲ VSCode Source Control 面板中的 Add & Commit 操作</p>
+    </div>
+
+    <h3>🚀 推送到遠端倉庫 (Push)</h3>
+    <p>提交變更後，需要將本地的提交推送到遠端倉庫：</p>
+
+    <div class="info">
+        <strong>💡 操作步驟：</strong>
+        <ol>
+            <li>完成 Commit 後，您會在 Source Control 面板看到待推送的提交</li>
+            <li>點擊 <strong>「Sync Changes」</strong> 按鈕（雲朵圖示）</li>
+            <li>或點擊 <strong>「Push」</strong> 按鈕（向上箭頭圖示）</li>
+            <li>如果是第一次推送新分支，VSCode 會詢問是否要發布分支到遠端</li>
+            <li>確認後，變更就會推送到 Gitea 伺服器</li>
+        </ol>
+    </div>
+
+    <div style="text-align: center; margin: 1.5rem 0;">
+        <img src="img/push.png" alt="VSCode Push 操作示意圖" class="guide-image">
+        <p class="image-caption">▲ VSCode 中的 Push 操作按鈕位置</p>
+    </div>
+
+    <h3>🔄 其他常用 UI 操作</h3>
+    <div class="success">
+        <ul>
+            <li><strong>檢視變更</strong>：點擊檔案名稱可以查看具體的變更內容</li>
+            <li><strong>撤銷變更</strong>：點擊檔案旁的 <strong>「↶」</strong> 按鈕可以撤銷未暫存的變更</li>
+            <li><strong>分支切換</strong>：點擊左下角的分支名稱可以切換或建立新分支</li>
+            <li><strong>拉取更新</strong>：點擊 <strong>「Pull」</strong> 按鈕（向下箭頭）可以拉取遠端的最新變更</li>
+            <li><strong>查看歷史</strong>：使用 <code>Ctrl+Shift+P</code> 開啟命令面板，搜尋 "Git: View History" 查看提交歷史</li>
+        </ul>
+    </div>
+
+    <div class="highlight">
+        <strong>⚠️ 注意事項：</strong>
+        <ul>
+            <li>首次使用時，VSCode 可能會要求您設定 Git 使用者名稱和電子郵件</li>
+            <li>如果遇到認證問題，請確認已正確設定 Git 認證或 SSH 金鑰</li>
+            <li>建議在推送前先拉取最新的遠端變更，避免衝突</li>
+            <li>對於重要的變更，建議透過 Pull Request 流程進行程式碼審查</li>
         </ul>
     </div>
 
@@ -297,25 +378,27 @@ chore: 更新依賴套件</code></pre>
     
     <h3>配置 CI/CD</h3>
     <ol>
-        <li>在倉庫根目錄建立 <code>.drone.yml</code> 文件</li>
-        <li>配置構建步驟：
-            <pre><code>kind: pipeline
-type: docker
-name: default
+        <li>在倉庫根目錄建立 <code>.gitea/workflows/name.yaml</code> 文件</li>
+        <li>配置構建步驟 (範例)：
+            <pre><code>name: Run CI on test_branch
 
-steps:
-- name: test
-  image: node:16
-  commands:
-  - npm install
-  - npm test
+on:
+  push:
+    branches:
+      - test_branch
 
-- name: build
-  image: node:16
-  commands:
-  - npm run build</code></pre>
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Run a test script
+        run: echo "✅ Running on test_branch!"
+</code></pre>
         </li>
-        <li>推送代碼後自動觸發 CI/CD</li>
+        <li>推送代碼(git push or PR merge)後自動觸發 CI/CD</li>
     </ol>
     
     <h3>查看構建狀態</h3>
@@ -326,10 +409,11 @@ steps:
 
     <h2 id="faq">❓ 常見問題</h2>
     
-    <h3>Q: 無法推送代碼？</h3>
+    <h3>Q: 無法推送代碼？ 如遇到 fatal: Authentication failed </h3>
     <div class="highlight">
         <strong>A:</strong> 檢查以下項目：
         <ul>
+            <li>很多時候直接push第二次，就可以解決 Auth 問題</li>
             <li>確認有推送權限</li>
             <li>檢查分支保護規則</li>
             <li>驗證 SSH 金鑰配置</li>
