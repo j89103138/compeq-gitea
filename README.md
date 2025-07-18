@@ -1,6 +1,6 @@
 # 🚀 Compeq Internal Git-Server Deployment and Optimization
 
-![Gitea Logo](gitea-on-docker/assets/landing.png)
+![Gitea Logo](assets/landing.png)
 
 ## 📋 專案概述
 
@@ -29,10 +29,10 @@
 
 | 功能 | 說明 |
 |------|------|
-| ![首頁](gitea-on-docker/assets/home.png) | **系統首頁**  |
-| ![用戶管理](gitea-on-docker/assets/users.png) | **用戶管理** - AD整合，可撰寫組織規則 |
-| ![SSH/LFS](gitea-on-docker/assets/ssh_lfs.png) | **SSH與LFS** - 支援SSH金鑰認證和大檔案版本控制 |
-| ![Git Actions](gitea-on-docker/assets/actions_runner.png) | **CI/CD流程** - Git Actions自動化建置和部署 |
+| ![首頁](assets/home.png) | **系統首頁**  |
+| ![用戶管理](assets/users.png) | **用戶管理** - AD整合，可撰寫組織規則 |
+| ![SSH/LFS](assets/ssh_lfs.png) | **SSH與LFS** - 支援SSH金鑰認證和大檔案版本控制 |
+| ![Git Actions](assets/actions_runner.png) | **CI/CD流程** - Git Actions自動化建置和部署 |
 
 ## 🏗️ 技術架構
 
